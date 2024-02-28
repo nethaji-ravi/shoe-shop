@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sneakers</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+      .addtocart img {
+        filter: brightness(0) invert(1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav-container">
+        <input type="checkbox" id="nav_check" hidden />
+        <nav>
+          <div class="nav-left">
+            <ul>
+              <label for="nav_check" id="hamburger" hidden>
+                <li><img src="images/icon-menu.svg" alt="" /></li
+              ></label>
+              <li>
+                <a href="#"><img src="images/logo.svg" alt="" /></a>
+              </li>
+              <div class="navhidee">
+                <label for="nav_check" class="close" hidden>
+                  <li><img src="images/icon-close.svg" alt="" /></li>
+                </label>
+                <li class="navhide"><a href="#">Collections</a></li>
+                <li class="navhide"><a href="#">Men</a></li>
+                <li class="navhide"><a href="#">Women</a></li>
+                <li class="navhide"><a href="#">About</a></li>
+                <li class="navhide"><a href="#">Contact</a></li>
+              </div>
+            </ul>
+          </div>
+          <div class="nav-right">
+            <ul>
+              <li class="cart-icon" data-target="cartModal">
+               <img  src="images/icon-cart.svg" alt="" />
+               <span class="cart-badge"></span>
+              </li>
+              <li class="avatar">
+                <a href="#"><img src="images/image-avatar.png" alt="" /></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="content">
+        <div class="content-image">
+          <div class="image-container">
+            <div class="main-image">
+              <img src="images/image-product-1.jpg" alt="" />
+            </div>
+            <div class="thumb-img">
+              <img  class="one" onclick="imageChange(this)" src="images/image-product-1-thumbnail.jpg" alt="" />
+              <img class="two" onclick="imageChange(this)" src="images/image-product-2-thumbnail.jpg" alt="" />
+              <img class="three" onclick="imageChange(this)" src="images/image-product-3-thumbnail.jpg" alt="" />
+              <img class="four" onclick="imageChange(this)" src="images/image-product-4-thumbnail.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <h4 class="heading">SNEAKER COMPANY</h4>
+          <h1>Fall Limited Edition Sneakers</h1>
+          <p class="product-description">
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they'll withstand everything
+            the weather can offer.
+          </p>
+          <div class="price">
+            <h1>$125.00</h1>
+            <div class="off"><p>50%</p></div>
+          </div>
+          <div class="original-price"><p>$250.00</p></div>
+          <div class="cart">
+            <div class="add-sub">
+              <div class="minus" id="product_minus">
+                <img src="images/icon-minus.svg" alt="" />
+              </div>
+              <p class="increment">1</p>
+              <div class="plus" id="product_plus">
+                <img src="images/icon-plus.svg" alt="" />
+              </div>
+            </div>
+            <div class="addtocart">
+              <button id="add-to-cart">
+                <img src="images/icon-cart.svg" alt="" />Add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-modal" hidden id="cartModal">
+        <div class="cart-modal-heading">
+          <p>Cart</p>
+        </div>
+        <hr>
+        <div class="cart-modal-list">
+          <!-- <p>Your cart is empty.</p> -->
+
+          <!-- <div class="checkout-products">
+            <div class="cart-imgthumb">
+              <img src="images/image-product-1-thumbnail.jpg" alt="">
+            </div>
+            <div class="cart-product-detail">
+              <div class="product">Fallk Limited Edition Sneakers</div>
+              <div class="cart-price">$125.00 <span>x</span> <span class="quantity">5</span> <span class="total">$345.00</span></div>
+            </div>
+            <div class="cart-delete-icon">
+              <img src="images/icon-delete.svg" alt="">
+            </div>
+          </div> -->
+         
+        
+        </div>
+        <div class="checkout-btn">
+          <button onclick="checkout()" id="checkout-btn">Checkout</button>
+        </div>
+      </div>
+
+      <div class="mobile-next-preview" hidden>
+        <span class="mobile-previous-icon"><img src="images/icon-previous.svg" alt="" id="mobile-previous"></span>
+        <span class="mobile-next-icon"><img src="images/icon-next.svg" alt="" id="mobile-next"></span>
+      </div>
+
+      <div class="shoe-lightbox-container" style="display:none">
+        <div class="lightbox" >
+          <div class="lightbox-main-image">
+            <img src="images/image-product-1.jpg" alt="">
+            <span class="previous-icon"><img src="images/icon-previous.svg" alt="" id="previous"></span>
+            <span class="next-icon"><img src="images/icon-next.svg" alt="" id="next"></span>
+            <span class="close-icon"><img src="images/icon-close.svg" alt="" id="close"></span>
+          </div>
+          <div class="lightbox-thumb-image">
+            <img  class="one" onclick="imageChangebox(this)" src="images/image-product-1-thumbnail.jpg" alt="" />
+            <img class="two" onclick="imageChangebox(this)" src="images/image-product-2-thumbnail.jpg" alt="" />
+            <img class="three" onclick="imageChangebox(this)" src="images/image-product-3-thumbnail.jpg" alt="" />
+            <img class="four" onclick="imageChangebox(this)" src="images/image-product-4-thumbnail.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
