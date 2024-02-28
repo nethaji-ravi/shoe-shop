@@ -8,7 +8,9 @@ const lightboxcontainer=document.querySelector('.shoe-lightbox-container');
 
 cartIcon.addEventListener("mouseover", function () {
   // cartModal.style.display = 'block';
+  if(window.screen.availWidth>550){
   cartIcon.click();
+  }
 });
 
 // cartIcon.addEventListener('mouseout', function() {
